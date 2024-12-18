@@ -45,6 +45,16 @@ func Test_seconds(t *testing.T) {
 		must.NoError(t, err)
 		must.Eq(t, 4, s)
 	})
+
+	t.Run("month", func(t *testing.T) {
+		ttl := 30 * 24 * time.Hour
+		fix := ttl - (1 * time.Second)
+		s, err := seconds(fix)
+		must.NoError(t, err)
+		must.Eq(t, 2591999, s)
+
+		// TODO support for 1+ month values
+	})
 }
 
 func Test_check(t *testing.T) {
